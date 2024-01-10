@@ -7,8 +7,8 @@ import { User } from "../model/user";
 import { Dashboard } from "../model/dashboard";
 
 export function createService() : Service{
-    const root = "http://localhost:8080";
-    //const root = "https://smartfintrack-api-production.up.railway.app";
+    //const root = "http://localhost:8080";
+    const root = "https://smartfintrack-api-production.up.railway.app";
     const instance = axios.create({
         withCredentials: true,
         headers: {
