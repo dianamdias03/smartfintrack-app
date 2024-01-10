@@ -54,11 +54,12 @@ const ExportToCsv: React.FC<ExportToCsvProps> = ({ userLoginId }) => {
     const [includeRevenue, setIncludeRevenue] = useState(true);
     const [includeExpenses, setIncludeExpenses] = useState(true);
     const { getCashFlows } = useContext(ServiceContext);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         getCashFlows(userLoginId).then(response => {
             setListCashFlows(response);
-        });
+        }).finally(() => setIsLoading(false));
     }, []);
 
     const handleDateChange: RangePickerProps['onChange'] = (dates: RangeValue<Dayjs>) => {
@@ -91,13 +92,11 @@ const ExportToCsv: React.FC<ExportToCsvProps> = ({ userLoginId }) => {
     const filteredCashFlows = listCashFlows.filter(cashFlow => {
         const transactionDate = dayjs(cashFlow.transactionDate);
 
-        // Verifica se a data de transação está dentro do intervalo selecionado
         const isWithinRange = !selectedDates ||
             (selectedDates[0] && selectedDates[1] &&
              transactionDate.isAfter(selectedDates[0].subtract(1, 'day')) &&
              transactionDate.isBefore(selectedDates[1].add(1, 'day')));
 
-        // Verifica se o registro é uma receita ou despesa, conforme selecionado
         const isRevenue = cashFlow.revenue;
         const include = (includeRevenue && isRevenue) || (includeExpenses && !isRevenue);
 
@@ -169,7 +168,7 @@ const ExportToCsv: React.FC<ExportToCsvProps> = ({ userLoginId }) => {
             </Row>
             <Row gutter={16} style={{paddingTop: '20px'}}>
                 <Col>
-                    <Button onClick={downloadCsv}>Export to CSV</Button>
+                    <Button onClick={downloadCsv} disabled={isLoading}>Export to CSV</Button>
                 </Col>
             </Row>
         </div>

@@ -14,9 +14,7 @@ interface CategoriesProps {
 const Categories: React.FC<CategoriesProps> = ({ userLoginId }) => {    
     const [selectedCategories, setSelectedCategories] = useState<React.Key[]>([]);
 
-    console.log(userLoginId)
-
-    const {categories, setCategories} = useCategories(userLoginId);
+    const {categories, setCategories, isLoading} = useCategories(userLoginId);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -74,6 +72,7 @@ const Categories: React.FC<CategoriesProps> = ({ userLoginId }) => {
                 key="table-categories" 
                 rowKey="id" 
                 style={{paddingTop: '10px'}}
+                loading={isLoading}
                 rowSelection={{
                     onChange: (selectedRowKeys: React.Key[]) => {
                         setSelectedCategories(selectedRowKeys);

@@ -21,7 +21,6 @@ export function createService() : Service{
             return await response.data as Category[];
         },
         async saveCategory(values){
-            console.log(values)
             const response = await instance.post(`${root}/api/category`, values);
             return await response.data as Category;
         },

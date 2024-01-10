@@ -26,6 +26,8 @@ const Revenue: React.FC<RevenueProps> = ({ userLoginId }) => {
 
     const { confirm } = Modal;
 
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
     const showConfirm = () => {
         confirm({
             title: 'Atenção',
@@ -44,7 +46,7 @@ const Revenue: React.FC<RevenueProps> = ({ userLoginId }) => {
     useEffect(() => {
         getRevenues(userLoginId).then((response) => {
             setListCashFlows(response);
-        });
+        }).finally(() => setIsLoading(false));
     }, []);
 
     const showModal = () => {
@@ -133,6 +135,7 @@ const Revenue: React.FC<RevenueProps> = ({ userLoginId }) => {
                 key="table-cashFlows" 
                 rowKey="id" 
                 style={{paddingTop: '10px'}}
+                loading={isLoading}
                 rowSelection={{
                     onChange: (selectedRowKeys: React.Key[]) => {
                         setSelectedCashFlows(selectedRowKeys);

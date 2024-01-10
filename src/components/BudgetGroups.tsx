@@ -15,7 +15,7 @@ interface BudgetGroupsProps {
 const BudgetGroups: React.FC<BudgetGroupsProps> = ({ userLoginId }) => { 
     const [selectedGroups, setSelectedGroups] = useState<React.Key[]>([]);
 
-    const {groupsWithBudget, setGroupsWithBudget} = useGroups(userLoginId);
+    const {groupsWithBudget, setGroupsWithBudget, isLoading} = useGroups(userLoginId);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -81,6 +81,7 @@ const BudgetGroups: React.FC<BudgetGroupsProps> = ({ userLoginId }) => {
                 key="table-groups" 
                 rowKey="id" 
                 style={{paddingTop: '10px'}}
+                loading={isLoading}
                 rowSelection={{
                     onChange: (selectedRowKeys: React.Key[]) => {
                         setSelectedGroups(selectedRowKeys);

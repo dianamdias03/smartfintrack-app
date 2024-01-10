@@ -25,10 +25,7 @@ const ModalAddGroup: React.FC<ModalAddGroupProps> = ({ isModalOpen, setIsModalOp
 
     const validateMessages = {
         required: '${label} é um campo obrigatório!'
-    };
-
-    console.log(userLoginId)
-    
+    };    
     
     const onFinish = (values: any) => {
         saveBudgetGroups({

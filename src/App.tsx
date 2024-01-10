@@ -54,12 +54,6 @@ const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [userLogin, setUserLogin] = useState<User>();
-
-  console.log(userLogin)
-
-
-   
-
   
   const {
     token: { colorBgContainer },

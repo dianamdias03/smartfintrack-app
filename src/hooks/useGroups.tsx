@@ -6,6 +6,7 @@ export const useGroups = (userLoginId: number | undefined) => {
     const { getBudgetGroups } = useContext(ServiceContext);
     const [groupsWithBudget, setGroupsWithBudget] = useState<BudgetGroup[]>([]);
     const [groupsWithName, setGroupsWithName] = useState<BudgetGroup[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
   
     useEffect(() => {
         getBudgetGroups(userLoginId).then((response) => {
@@ -23,9 +24,9 @@ export const useGroups = (userLoginId: number | undefined) => {
                   value: item.id
                 };
             }));
-        });
+        }).finally(() => setIsLoading(false));
     }, []);
 
   
-    return {groupsWithBudget, setGroupsWithBudget, groupsWithName, setGroupsWithName};
+    return {groupsWithBudget, setGroupsWithBudget, groupsWithName, setGroupsWithName, isLoading};
   };

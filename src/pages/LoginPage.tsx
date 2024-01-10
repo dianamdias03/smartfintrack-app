@@ -50,13 +50,11 @@ const LoginPage: React.FC<LoginPageProps> = ({ setIsLoggedIn, setUserLogin }) =>
 
     if(createUser){
       createLogin(form.getFieldsValue().user).then((data: User) => {
-        console.log(data)
         setUserLogin(data)
         setIsLoggedIn(data.sucessLogin);
       })
     }else{
       login(form.getFieldsValue().user).then((data) => {
-        console.log(data)
         setUserLogin(data)
         setIsLoggedIn(data.sucessLogin);
       })

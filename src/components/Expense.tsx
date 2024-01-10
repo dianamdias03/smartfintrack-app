@@ -22,6 +22,8 @@ const Expense: React.FC<ExpenseProps> = ({ userLoginId }) => {
 
     const { getExpenses } = useContext(ServiceContext);
 
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
     const { confirm } = Modal;
 
     const showConfirm = () => {
@@ -42,7 +44,7 @@ const Expense: React.FC<ExpenseProps> = ({ userLoginId }) => {
     useEffect(() => {
         getExpenses(userLoginId).then((response) => {
             setListCashFlows(response);
-        });
+        }).finally(() => setIsLoading(false));
     }, []);
 
     const showModal = () => {
@@ -138,6 +140,7 @@ const Expense: React.FC<ExpenseProps> = ({ userLoginId }) => {
                 key="table-cashFlows" 
                 rowKey="id" 
                 style={{paddingTop: '10px'}}
+                loading={isLoading}
                 rowSelection={{
                     onChange: (selectedRowKeys: React.Key[]) => {
                         setSelectedCashFlows(selectedRowKeys);

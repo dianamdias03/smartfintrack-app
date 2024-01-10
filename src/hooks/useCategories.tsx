@@ -5,6 +5,7 @@ import { Category } from "../model/category";
 export const useCategories = (userLoginId: number | undefined) => {
     const { getCategories } = useContext(ServiceContext);
     const [categories, setCategories] = useState<Category[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
   
     useEffect(() => {
         getCategories(userLoginId).then((response) => {
@@ -15,9 +16,9 @@ export const useCategories = (userLoginId: number | undefined) => {
                   value: item.id
                 };
             }));
-        });
+        }).finally(() => setIsLoading(false));
     }, []);
 
   
-    return {categories, setCategories};
+    return {categories, setCategories, isLoading};
   };

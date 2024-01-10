@@ -14,11 +14,12 @@ const CashFlow: React.FC<CashFlowProps> = ({ userLoginId }) => {
 
     const { getCashFlows } = useContext(ServiceContext);
 
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         getCashFlows(userLoginId).then((response) => {
             setListCashFlows(response);
-        });
+        }).finally(() => setIsLoading(false));
     }, []);
 
     interface DataType {
@@ -78,7 +79,7 @@ const CashFlow: React.FC<CashFlowProps> = ({ userLoginId }) => {
                 key="table-cashFlows" 
                 rowKey="id" 
                 style={{ paddingTop: '10px', padding: '8px' }} 
-                
+                loading={isLoading}
                 /*rowSelection={{
                     onChange: (selectedRowKeys: React.Key[]) => {
                         setSelectedCashFlows(selectedRowKeys);

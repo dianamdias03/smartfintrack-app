@@ -18,8 +18,6 @@ const Dashboard: React.FC<DashboardProps> = ({ userLoginId }) => {
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    console.log(dashboard)
-
     useEffect(() => {
         getDashboard(userLoginId).then((response) => {
             setDashboard(response);

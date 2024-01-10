@@ -54,11 +54,6 @@ const ModalAddRevenue: React.FC<ModalAddRevenueProps> = ({ isModalOpen, setIsMod
         }]);
             setIsModalOpen(false);
         })
-        /*postData(form.getFieldsValue().category).then((response) => {
-            console.log(response)
-            setListCategories((listCategories: any) => [...listCategories, data]);
-            setIsModalOpen(false);
-        });*/
     };
 
     return(
