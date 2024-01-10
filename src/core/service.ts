@@ -3,6 +3,7 @@ import { Category } from "../model/category";
 import { CashFlow } from "../model/cashFlow";
 import { BudgetGroup } from "../model/budgetGroups";
 import { User } from "../model/user";
+import { Dashboard } from "../model/dashboard";
 
 export interface Service{
     getCategories(userLoginId: number | undefined) : Promise<Category[]>;
@@ -21,6 +22,8 @@ export interface Service{
 
     createLogin(values: User): Promise<User>;
     login(values: User): Promise<User>;
+
+    getDashboard(userLoginId: number | undefined) : Promise<Dashboard>;
 }
 
 export const ServiceContext = React.createContext(
