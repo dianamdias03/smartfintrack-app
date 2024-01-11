@@ -79,8 +79,7 @@ const App: React.FC = () => {
             }
           }}
           items={[
-            getItem('Início', '/', <HomeOutlined />),
-            getItem('Dashboard', '/dashboard', <BarChartOutlined />),
+            getItem('Painel', '/', <BarChartOutlined />),
             getItem('Despesas', '/expense', <SnippetsOutlined />),
             getItem('Receitas', '/revenue', <RiseOutlined />),
             getItem('Fluxo de Caixa', '/cashFlow', <PieChartOutlined />),
@@ -134,8 +133,7 @@ function Content({ userLoginId }: ContentProps) {
   >
     
     <Routes>
-      <Route path='/' element={<Home/>}></Route>
-      <Route path='/dashboard' element={<Dashboard userLoginId={userLoginId}/>}></Route>
+      <Route path='/' element={<Dashboard userLoginId={userLoginId}/>}></Route>
       <Route path='/expense' element={<Expense userLoginId={userLoginId}/>}></Route>
       <Route path='/revenue' element={<Revenue userLoginId={userLoginId}/>}></Route>
       <Route path='/cashFlow' element={<CashFlow userLoginId={userLoginId}/>}></Route>

@@ -18,31 +18,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ setIsLoggedIn, setUserLogin }) =>
 
   const isMobile = window.innerWidth <= 768;
 
-  
-
-  /*const { saveCategory } = useContext(ServiceContext);
-
-  const [form] = Form.useForm();
-
-  const handleOk = () => {
-      form.submit();
-  };
-
-  const handleCancel = () => {
-      setIsModalOpen(false);
-  };
-
-  const validateMessages = {
-      required: '${label} é um campo obrigatório!'
-  };
-  
-  const onFinish = (values: any) => {
-      saveCategory(form.getFieldsValue().category).then((data) => {
-          setListCategories((listCategories: any) => [...listCategories, data]);
-          setIsModalOpen(false);
-      })
-  };*/
-
   const { createLogin, login } = useContext(ServiceContext);
 
   const onFinish = (values: any) => {
@@ -59,20 +34,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ setIsLoggedIn, setUserLogin }) =>
         setIsLoggedIn(data.sucessLogin);
       })
     }
-    
-
-    // Simular uma solicitação de login (substitua isso com a lógica real de login)
-    /*setTimeout(() => {
-      console.log('Valores de login:', values);
-      setLoading(false);
-
-      // Verificar se o login foi bem-sucedido
-      const loginSuccessful = true; // Substitua com a lógica de verificação real
-
-      if (loginSuccessful) {
-        setIsLoggedIn(true); // Atualizar o estado de login para true
-      }
-    }, 1000);*/
   };
 
   return (
@@ -92,8 +53,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ setIsLoggedIn, setUserLogin }) =>
       <div style={{
         flex: 1,
         display: 'flex',
-        justifyContent: 'center', // Centraliza horizontalmente
-        alignItems: 'center', // Centraliza verticalmente
+        justifyContent: 'center',
+        alignItems: 'center', 
         flexDirection: 'column', 
       }}
       > 
