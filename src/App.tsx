@@ -117,7 +117,6 @@ type ContentProps = {
 };
 
 function Content({ userLoginId }: ContentProps) {
-  console.log(userLoginId)
   const {
     token: { colorBgContainer },
   } = theme.useToken();
